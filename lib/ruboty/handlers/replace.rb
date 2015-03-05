@@ -65,7 +65,9 @@ module Ruboty
         if store.empty?
           "No pattern registered"
         else
-          store.to_yaml[4..-1]
+          store.map do |pattern, template|
+            "#{pattern} -> #{template}"
+          end.join("\n")
         end
       end
 

@@ -7,6 +7,12 @@ module Ruboty
       BRAIN_NAMESPACE = "ruboty-replace"
 
       on(
+        /delete pattern (?<pattern>.+)/m,
+        description: "Delete pattern",
+        name: "delete",
+      )
+
+      on(
         /list patterns/,
         description: "List registered patterns to replace",
         name: :list
@@ -26,13 +32,21 @@ module Ruboty
         name: :replace,
       )
 
+      def delete(message)
+        if store.delete(message[:pattern])
+          message.reply("Deleted")
+        else
+          message.reply("Not found")
+        end
+      end
+
       def list(message)
         message.reply(patterns_in_string, code: true)
       end
 
       def register(message)
         store[message[:pattern]] = message[:template]
-        message.reply("Registered!")
+        message.reply("Registered")
       end
 
       def replace(message)

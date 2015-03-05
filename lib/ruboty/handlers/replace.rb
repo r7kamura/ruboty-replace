@@ -1,5 +1,4 @@
 require "ruboty"
-require "yaml"
 
 module Ruboty
   module Handlers

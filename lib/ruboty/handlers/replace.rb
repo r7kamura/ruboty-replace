@@ -57,6 +57,7 @@ module Ruboty
             Ruboty.logger.debug("#{e.class}: #{e}")
           end
         end
+        false
       end
 
       private

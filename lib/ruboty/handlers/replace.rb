@@ -12,6 +12,12 @@ module Ruboty
       )
 
       on(
+        /delete all patterns/,
+        description: "Delete all patterns",
+        name: "delete_all_patterns",
+      )
+
+      on(
         /list patterns/,
         description: "List registered patterns to replace",
         name: :list,
@@ -37,6 +43,11 @@ module Ruboty
         else
           message.reply("Not found")
         end
+      end
+
+      def delete_all_patterns(message)
+        store.clear
+        message.reply("Deleted all patterns")
       end
 
       def list(message)

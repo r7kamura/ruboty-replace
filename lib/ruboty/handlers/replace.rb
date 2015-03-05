@@ -15,7 +15,7 @@ module Ruboty
       on(
         /list patterns/,
         description: "List registered patterns to replace",
-        name: :list
+        name: :list,
       )
 
       on(
@@ -50,7 +50,13 @@ module Ruboty
       end
 
       def replace(message)
-        puts "TODO"
+        store.each do |pattern, template|
+          begin
+            message.body.gsub!(Regexp.new(pattern), template)
+          rescue => e
+            Ruboty.logger.debug("#{e.class}: #{e}")
+          end
+        end
       end
 
       private

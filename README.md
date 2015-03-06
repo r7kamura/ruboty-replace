@@ -7,3 +7,14 @@ Replace given message with registered patterns for other handlers.
 @ruboty list patterns                    - List registered patterns
 @ruboty delete pattern <regexp>          - Delete pattern
 ```
+
+### Note
+You need to put `ruboty-replace` gem before other handlers.
+
+```rb
+# Gemfile
+gem "ruboty-replace"
+gem "ruboty-cron"
+gem "ruboty-google_image"
+...
+```
